@@ -10,7 +10,7 @@ import com.sismics.util.filter.HeaderBasedSecurityFilter;
 import org.junit.Assert;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.sismics.util.filter.TokenBasedSecurityFilter;
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+  <id>site</id>
+  <formats>
+    <format>dir</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+
+  <!-- Copy parent site -->
+  <fileSets>
+    <fileSet>
+      <directory>${project.build.directory}/site</directory>
+      <outputDirectory></outputDirectory>
+      <excludes>
+        <exclude>docs-core/**</exclude>
+        <exclude>docs-web-common/**</exclude>
+        <exclude>docs-web/**</exclude>
+      </excludes>
+    </fileSet>
+  </fileSets>
+
+  <!-- Copy docs-core site -->
+  <fileSets>
+    <fileSet>
+      <directory>${project.basedir}/docs-core/target/site</directory>
+      <outputDirectory>docs-core</outputDirectory>
+    </fileSet>
+  </fileSets>
+
+  <!-- Copy docs-web-common site -->
+  <fileSets>
+    <fileSet>
+      <directory>${project.basedir}/docs-web-common/target/site</directory>
+      <outputDirectory>docs-web-common</outputDirectory>
+    </fileSet>
+  </fileSets>
+
+  <!-- Copy docs-web site -->
+  <fileSets>
+    <fileSet>
+      <directory>${project.basedir}/docs-web/target/site</directory>
+      <outputDirectory>docs-web</outputDirectory>
+    </fileSet>
+  </fileSets>
+
+</assembly>

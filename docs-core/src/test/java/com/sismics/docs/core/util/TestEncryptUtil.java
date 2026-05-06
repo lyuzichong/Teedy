@@ -4,7 +4,7 @@ import com.google.common.base.Strings;
 import com.google.common.io.ByteStreams;
 import com.sismics.BaseTest;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Customized Metrics Ruleset"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>
+        定制的 PMD 规则集，包含5个软件度量指标：LoC, CC, WMC, CBO, LCOM。
+    </description>
+
+    <!-- 1. Lines of Code (LoC) - 代码行数 -->
+    <rule ref="category/java/design.xml/NcssCount" />
+    <rule ref="category/java/design.xml/TooManyFields" />
+    <rule ref="category/java/design.xml/TooManyMethods" />
+
+    <!-- 2. Cyclomatic Complexity (CC) - 圈复杂度 & 3. Weighted Methods per Class (WMC) - 类的加权方法数 -->
+    <rule ref="category/java/design.xml/CyclomaticComplexity" />
+
+    <!-- 4. Coupling Between Objects (CBO) - 对象间耦合度 -->
+    <rule ref="category/java/design.xml/CouplingBetweenObjects" />
+
+    <!-- 5. Lack of Cohesion in Methods (LCOM) - 方法缺乏内聚度 -->
+    <rule ref="category/java/design.xml/GodClass" />
+
+</ruleset>

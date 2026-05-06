@@ -11,7 +11,7 @@ import com.sismics.util.mime.MimeType;
 import org.apache.poi.ss.formula.functions.T;
 import org.joda.time.DateTime;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;

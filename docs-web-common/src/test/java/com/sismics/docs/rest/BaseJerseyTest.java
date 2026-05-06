@@ -13,8 +13,8 @@ import org.glassfish.jersey.test.TestProperties;
 import org.glassfish.jersey.test.external.ExternalTestContainerFactory;
 import org.glassfish.jersey.test.spi.TestContainerException;
 import org.glassfish.jersey.test.spi.TestContainerFactory;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.subethamail.wiser.Wiser;
 import org.subethamail.wiser.WiserMessage;
 
@@ -90,7 +90,7 @@ public abstract class BaseJerseyTest extends JerseyTest {
     }
     
     @Override
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         super.setUp();
         System.setProperty("docs.header_authentication", "true");
@@ -130,6 +130,20 @@ public abstract class BaseJerseyTest extends JerseyTest {
      */
     protected String popEmail() throws MessagingException, IOException {
         List<WiserMessage> wiserMessageList = wiser.getMessages();
+        long deadline = System.currentTimeMillis() + 5000L;
+        while (wiserMessageList.isEmpty() && System.currentTimeMillis() < deadline) {
+            try {
+                Thread.sleep(100L);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                break;
+            }
+        }
+        try {
+            Thread.sleep(250L);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
         if (wiserMessageList.isEmpty()) {
             return null;
         }
@@ -142,7 +156,7 @@ public abstract class BaseJerseyTest extends JerseyTest {
     }
 
     @Override
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         super.tearDown();
         if (wiser != null) {

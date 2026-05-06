@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <mkdir dir="/Users/lvzichong/course/Software_Engineering/Teedy/target/site/docs-parent" />
+    <copy todir="/Users/lvzichong/course/Software_Engineering/Teedy/target/site/docs-parent" failonerror="false">
+      <fileset dir="/Users/lvzichong/course/Software_Engineering/Teedy/target/site" />
+    </copy>
+  </target>
+</project>

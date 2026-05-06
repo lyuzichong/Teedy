@@ -3,7 +3,7 @@ package com.sismics.docs.rest;
 import com.sismics.docs.rest.resource.ThirdPartyWebhookResource;
 import com.sismics.util.filter.TokenBasedSecurityFilter;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;

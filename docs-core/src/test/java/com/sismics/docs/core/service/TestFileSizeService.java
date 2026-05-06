@@ -5,7 +5,7 @@ import com.sismics.docs.core.dao.FileDao;
 import com.sismics.docs.core.model.jpa.File;
 import com.sismics.docs.core.model.jpa.User;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestFileSizeService extends BaseTransactionalTest {
 

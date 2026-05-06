@@ -3,7 +3,7 @@ package com.sismics.util.format;
 import com.sismics.BaseTest;
 import com.sismics.docs.core.util.format.PdfFormatHandler;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.nio.file.Paths;
 
