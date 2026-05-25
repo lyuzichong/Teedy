@@ -56,7 +56,6 @@ EXPOSE 8080
 RUN mkdir /app && \
     cd /app && \
     java -jar /opt/jetty/start.jar --add-modules=server,http,webapp,deploy
-ADD docs.xml /app/webapps/docs.xml
-ADD docs-web/target/docs-web-*.war /app/webapps/docs.war
+ADD docs-web/target/docs-web-*.war /app/webapps/ROOT.war
 WORKDIR /app
 CMD ["java", "-jar", "/opt/jetty/start.jar"]
