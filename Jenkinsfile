@@ -102,7 +102,15 @@ pipeline {
             }
             post {
                 always {
-                    echo 'Maven Site 已生成至 target/site/（归档产物中包含完整站点）'
+                    publishHTML([
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'target/site',
+                        reportFiles: 'index.html',
+                        reportName: 'Maven Site',
+                        reportTitles: 'Teedy - Maven Site'
+                    ])
                 }
             }
         }
