@@ -47,7 +47,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'mvn test -pl docs-core,docs-web-common -Dtest="!com.sismics.util.TestResourceUtil"'
+                sh 'mvn test -pl docs-core,docs-web-common -Dtest=!com.sismics.util.TestResourceUtil'
             }
             post {
                 always {
@@ -123,6 +123,7 @@ pipeline {
             archiveArtifacts artifacts: 'docs-core/target/*.jar', allowEmptyArchive: true
             archiveArtifacts artifacts: 'docs-web-common/target/*.jar', allowEmptyArchive: true
             archiveArtifacts artifacts: 'docs-web/target/*.war', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'target/site/**/*', allowEmptyArchive: true
         }
 
         success {
