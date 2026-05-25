@@ -1,16 +1,10 @@
 pipeline {
     agent any
 
-    // ======================== 工具版本声明 ========================
-    tools {
-        jdk 'jdk11'
-        maven 'maven3'
-    }
-
     // ======================== 环境变量 ========================
     environment {
-        MAVEN_OPTS = '-Xmx2048m -XX:MaxPermSize=512m'
-        MAVEN_SKIP_FRONTEND = 'true'
+        JAVA_HOME = '/Users/lvzichong/Library/Java/JavaVirtualMachines/ms-25.0.0/Contents/Home'
+        PATH = "$JAVA_HOME/bin:/opt/homebrew/bin:$PATH"
     }
 
     // ======================== 构建参数 ========================
