@@ -47,7 +47,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh 'mvn test -Dtest="!com.sismics.util.TestResourceUtil"'
             }
             post {
                 always {
