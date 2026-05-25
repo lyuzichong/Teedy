@@ -47,15 +47,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                script {
-                    def exitCode = sh(
-                        script: 'mvn test -Dtest="!com.sismics.util.TestResourceUtil"',
-                        returnStatus: true
-                    )
-                    if (exitCode != 0) {
-                        unstable('部分集成测试失败（缺少 ffmpeg/tesseract/mediainfo），见 surefire 报告')
-                    }
-                }
+                sh 'mvn test -pl docs-core,docs-web-common -Dtest="!com.sismics.util.TestResourceUtil"'
             }
             post {
                 always {
