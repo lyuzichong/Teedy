@@ -26,9 +26,13 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'teedy', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh """
                         echo "\$DOCKER_PASS" | docker login -u "\$DOCKER_USER" --password-stdin
-                        docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
+                        for i in 1 2 3; do
+                            docker push ${DOCKER_IMAGE}:${DOCKER_TAG} && break || sleep 10
+                        done
                         docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest
-                        docker push ${DOCKER_IMAGE}:latest
+                        for i in 1 2 3; do
+                            docker push ${DOCKER_IMAGE}:latest && break || sleep 10
+                        done
                     """
                 }
             }
