@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         JAVA_HOME = '/Users/lvzichong/Library/Java/JavaVirtualMachines/ms-25.0.0/Contents/Home'
-        PATH = "$JAVA_HOME/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
+        PATH = "$JAVA_HOME/bin:/opt/homebrew/bin:/usr/local/bin:/Users/lvzichong/.nvm/versions/node/v24.14.0/bin:$PATH"
         DOCKER_IMAGE = 'lv05327/teedy'
         DOCKER_TAG = "${env.BUILD_NUMBER}"
     }
