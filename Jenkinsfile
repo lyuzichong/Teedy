@@ -2,6 +2,8 @@ pipeline {
     agent any
 
     environment {
+        JAVA_HOME = '/Users/lvzichong/Library/Java/JavaVirtualMachines/ms-25.0.0/Contents/Home'
+        PATH = "$JAVA_HOME/bin:/opt/homebrew/bin:$PATH"
         DOCKER_HUB_CREDENTIALS = 'dockerhub_credentials'
         DOCKER_IMAGE = 'lv05327/teedy'
         DOCKER_TAG = "${env.BUILD_NUMBER}"
