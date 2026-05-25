@@ -57,5 +57,12 @@ RUN mkdir /app && \
     cd /app && \
     java -jar /opt/jetty/start.jar --add-modules=server,http,webapp,deploy
 ADD docs-web/target/docs-web-*.war /app/webapps/ROOT.war
+RUN mkdir -p /tmp/warfix && \
+    cd /tmp/warfix && \
+    jar xf /app/webapps/ROOT.war && \
+    cp -r src/* . && \
+    rm -rf src && \
+    jar cf /app/webapps/ROOT.war * && \
+    rm -rf /tmp/warfix
 WORKDIR /app
 CMD ["java", "-jar", "/opt/jetty/start.jar"]
