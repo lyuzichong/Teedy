@@ -11,8 +11,8 @@ pipeline {
     parameters {
         booleanParam(
             name: 'SKIP_JAVADOC',
-            defaultValue: false,
-            description: '跳过 Javadoc 生成'
+            defaultValue: true,
+            description: '跳过 Javadoc 生成（可选阶段）'
         )
         booleanParam(
             name: 'SKIP_TESTS_IN_PACKAGE',
