@@ -47,12 +47,14 @@ pipeline {
 
         stage('Test') {
             steps {
-                catchError(
-                    buildResult: 'SUCCESS',
-                    stageResult: 'UNSTABLE',
-                    message: '部分集成测试失败（缺少 ffmpeg/tesseract/mediainfo 等系统依赖）'
-                ) {
-                    sh 'mvn test -Dtest="!com.sismics.util.TestResourceUtil"'
+                script {
+                    def exitCode = sh(
+                        script: 'mvn test -Dtest="!com.sismics.util.TestResourceUtil"',
+                        returnStatus: true
+                    )
+                    if (exitCode != 0) {
+                        unstable('部分集成测试失败（缺少 ffmpeg/tesseract/mediainfo），见 surefire 报告')
+                    }
                 }
             }
             post {
@@ -108,15 +110,7 @@ pipeline {
             }
             post {
                 always {
-                    publishHTML([
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: true,
-                        keepAll: true,
-                        reportDir: 'target/site',
-                        reportFiles: 'index.html',
-                        reportName: 'Maven Site Documentation',
-                        reportTitles: 'Teedy - Maven Site'
-                    ])
+                    echo 'Maven Site 已生成至 target/site/（归档产物中包含完整站点）'
                 }
             }
         }
