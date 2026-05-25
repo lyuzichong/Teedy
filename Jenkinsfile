@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        // 使用你之前在 Jenkins 里配置的 Maven 工具名字
-        maven 'maven3'
-    }
-
     environment {
         DOCKER_HUB_CREDENTIALS = 'dockerhub_credentials'
         DOCKER_IMAGE = 'lv05327/teedy'
