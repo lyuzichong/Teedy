@@ -17,19 +17,19 @@ pipeline {
 
         stage('Building image') {
             steps {
-                script {
-                    docker.build("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}")
-                }
+                sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
             }
         }
 
         stage('Upload image') {
             steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'teedy') {
-                        docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").push()
-                        docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").push('latest')
-                    }
+                withCredentials([usernamePassword(credentialsId: 'teedy', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh """
+                        echo "\$DOCKER_PASS" | docker login -u "\$DOCKER_USER" --password-stdin
+                        docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
+                        docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest
+                        docker push ${DOCKER_IMAGE}:latest
+                    """
                 }
             }
         }
@@ -42,9 +42,7 @@ pipeline {
                         def containerName = "teedy-container-${port}"
                         sh "docker stop ${containerName} || true"
                         sh "docker rm ${containerName} || true"
-                        docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").run(
-                            "--name ${containerName} -d -p ${port}:8080"
-                        )
+                        sh "docker run --name ${containerName} -d -p ${port}:8080 ${DOCKER_IMAGE}:${DOCKER_TAG}"
                     }
                 }
             }
