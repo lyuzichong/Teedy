@@ -4,7 +4,7 @@ pipeline {
     environment {
         JAVA_HOME = '/Users/lvzichong/Library/Java/JavaVirtualMachines/ms-25.0.0/Contents/Home'
         PATH = "$JAVA_HOME/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
-        DOCKER_HUB_CREDENTIALS = 'dockerhub_credentials'
+        DOCKER_HUB_CREDENTIALS = 'teedy'
         DOCKER_IMAGE = 'lv05327/teedy'
         DOCKER_TAG = "${env.BUILD_NUMBER}"
     }
